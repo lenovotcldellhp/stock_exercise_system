@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生表测试结果</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        
+    <th>id</th>
+    <th>name</th>
+    <th>age</th>
+    </tr>
+    </thead>
+    <tr data-th-each="list:${list}">
+        <td data-th-text="${list.id}"></td>
+        <td data-th-text="${list.name}"></td>
+        <td data-th-text="${list.age}"></td>
+    </tr>
+
+</table>
+</body>
+</html>
