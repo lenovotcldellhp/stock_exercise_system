@@ -32,14 +32,6 @@ public class GreetingController {
         //输出greeting对象里的内容
         System.out.println(greeting.getId());
         System.out.println(greeting.getContent());
-       // Student student=new Student();//新建一个student对象并初始化
-     //   student.setAge(12);
-        //student.setId(8);
-        //student.setName("AAAAABBB");
-        //  ApplicationContext context = new FileSystemXmlApplicationContext("/src/main/resources/Spring-Database.xml");
-        //ApplicationContext context = new FileSystemXmlApplicationContext("Spring-Database.xml");
-       // JDBCOperater jdbcOp = (JDBCOperater) context.getBean("student");//创建一个JDBC操作对象
-        // jdbcOp.insertNamedParameter(student);//调用这个对象里的插入方法
         return "result";
     }
 

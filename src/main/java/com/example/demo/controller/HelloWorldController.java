@@ -13,7 +13,7 @@ public class HelloWorldController {
     @Autowired
   //  IStockService stockService;
 
-    @RequestMapping(value="/index",method=RequestMethod.GET)
+    @RequestMapping(value="/hello",method=RequestMethod.GET)
     public String index(){
         return "XPS said 'hello spring boot' after crying many times.";
     }

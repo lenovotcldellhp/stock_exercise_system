@@ -2,21 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.Student;
 import com.example.demo.service.StudentService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.example.demo.JDBC.JDBCOperater;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -26,6 +20,13 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+    @GetMapping("/student")
+    public String student(Model model)throws ParseException{
+        List studentlist=studentService.getList();
+        model.addAttribute("studentlist",studentlist);
+        return "student";
+    }
+
 
     @RequestMapping("/list")
     public List<Student> getStus(){

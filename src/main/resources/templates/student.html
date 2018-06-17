@@ -14,10 +14,10 @@
     <th>age</th>
     </tr>
     </thead>
-    <tr data-th-each="list:${list}">
-        <td data-th-text="${list.id}"></td>
-        <td data-th-text="${list.name}"></td>
-        <td data-th-text="${list.age}"></td>
+    <tr data-th-each="student:${studentlist}">
+        <td data-th-text="${student.id}"></td>
+        <td data-th-text="${student.name}"></td>
+        <td data-th-text="${student.age}"></td>
     </tr>
 
 </table>
