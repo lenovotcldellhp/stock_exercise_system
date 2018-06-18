@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>交易结果</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>交易结果</h1>
+
+<p th:text="'交易类型: ' + ${buyResult.type}" />
+<p th:text="'股票号码: ' + ${buyResult.stockcode}" />
+<p th:text="'交易总金额: ' + ${buyResult.money}" />
+<p th:text="'股票数量(股): ' + ${buyResult.count}" />
+<p th:text="'交易时股票单价: ' + ${buyResult.price}" />
+<p th:text="'交易结果: ' + ${buyResult.result}" />
+</body>
+</html>

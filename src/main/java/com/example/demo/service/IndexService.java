@@ -35,6 +35,7 @@ public class IndexService {
                 stock.setStockcode(rs.getString("stockcode"));
                 stock.setStockname(rs.getString("stockname"));
                 stock.setHolding(rs.getInt("holding"));
+                stock.setNewest_price(rs.getFloat("newest_price"));
            //     System.out.println(rs);
              //   System.out.println(rs.getString("stockcode"));
               //  System.out.println(rs.getString("stockname"));

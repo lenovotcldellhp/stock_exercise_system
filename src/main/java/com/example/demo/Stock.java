@@ -4,6 +4,15 @@ public class Stock {
     private String stockcode;
     private String stockname;
     private int holding;
+    private float newest_price;
+
+    public void setNewest_price(float newest_price){
+        this.newest_price=newest_price;
+    }
+
+    public float getNewest_price(){
+        return this.newest_price;
+    }
 
     public String getStockcode() {
 

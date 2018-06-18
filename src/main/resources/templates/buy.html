@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>股票交易模式</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>股票交易操作</h1>
+<!--action对应ModelAttribute-->
+<!--<h1 th:name="${balance}">您当前还有本金"${balance}"元</h1>-->
+<h4>买入交易表单</h4>
+<form action="#" th:action="@{/buy}" th:object="${buy}" method="post">
+    <p>股票号码: <input type="text" th:field="*{stockcode}" /></p>
+    <p>交易数量（股）: <input type="text" th:field="*{count}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<h4>卖出交易表单</h4>
+<!--
+<form action="#" th:action="@{/buy}" th:object="${buy}" method="post">
+    <p>股票号码: <input type="text" th:field="*{stockcode}" /></p>
+    <p>交易数量（股）: <input type="text" th:field="*{count}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+-->
+</body>
+</html>
