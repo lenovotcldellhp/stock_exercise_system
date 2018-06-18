@@ -93,6 +93,59 @@ public class BuyController {
 
         return "buyresult";
     }
+
+    @PostMapping("/sell")
+    public String sellSubmit(Model model,@ModelAttribute Stockbuy sell) {
+        //输出greeting对象里的内容
+        // System.out.println(buy.getStockcode());//工作正常
+        //  System.out.println(buy.getCount());//工作正常
+        System.out.println("使用第一个表单处理买卖的Controller");
+        String stockcode=sell.getStockcode();//要买卖的股票号码
+        String countstr=sell.getCount();//要买卖的股票数量，字符串形式
+        int count=Integer.valueOf(countstr);//要买卖的股票数量，数字形式
+
+        float price=buyservice.getNewestprice(stockcode);//购买时，该股票的最新价格
+        float balance=buyservice.getBalance();//首先，得到用户当前的本金数额
+        int origin_count=buyservice.getHolding(stockcode);//这支股票原有的持有量
+        float money=count*price;//本次交易（如果能完成的话）所需花费的金额
+
+
+        BuyResult buyResult=new BuyResult();
+        buyResult.setCount(count);
+
+        buyResult.setMoney(money);
+        buyResult.setPrice(price);
+        buyResult.setStockcode(stockcode);
+        buyResult.setType("卖出");
+
+        //首先，我们要判断一下现有的股票够不够卖
+        if(origin_count<count){//
+           buyResult.setResult("交易失败：您当前持有的"+stockcode+"号股票不足，无法完成卖出。");
+        }
+       if(balance>=money){
+            //新的股票持有量=原持有量-要卖的量
+            int new_count=origin_count-count;
+
+            //新的本金=原本金+卖股票得的钱
+            float new_balance=balance+money;
+
+            //接下来存储这两个数据
+            buyservice.setHolding(stockcode,new_count);
+            buyservice.setBalance(new_balance);
+
+            //提示文字
+            buyResult.setResult("交易成功。");
+        }
+
+    //    int new_count;//交易后的股票数量
+
+
+        //  buyResult.setResult("假装交易进行的很成功");
+
+        model.addAttribute("buyResult",buyResult);
+
+        return "buyresult";
+    }
   //  @PostMapping("/buy")
    // public String buySubmit(Model model, @ModelAttribute )
 

@@ -42,7 +42,7 @@ public class GreetingController {
         System.out.println(greeting2.getId());
         System.out.println(greeting2.getContent());
         System.out.println("使用第二个表单处理Controller");
-        return "result2";
+        return "result";
     }
 
 }
