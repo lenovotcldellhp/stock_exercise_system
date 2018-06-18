@@ -22,7 +22,8 @@ public class GreetingController {
     @GetMapping("/greeting")
     public String greetingForm(Model model) {
         model.addAttribute("greeting", new Greeting());
-
+        System.out.println("%%%%%%%%%%%%%");
+        System.out.println(model.toString());
       //  getFiledName(model);
         return "greeting";
     }
@@ -32,8 +33,16 @@ public class GreetingController {
         //输出greeting对象里的内容
         System.out.println(greeting.getId());
         System.out.println(greeting.getContent());
+        System.out.println("使用第一个表单处理Controller");
         return "result";
     }
-
+    @PostMapping("/greeting2")
+    public String greetingSubmit2(@ModelAttribute Greeting greeting2) {
+        //输出greeting对象里的内容
+        System.out.println(greeting2.getId());
+        System.out.println(greeting2.getContent());
+        System.out.println("使用第二个表单处理Controller");
+        return "result2";
+    }
 
 }

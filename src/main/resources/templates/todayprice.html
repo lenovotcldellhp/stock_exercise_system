@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>股票练兵平台</title>
+</head>
+<body>
+<h1>欢迎使用股票练兵平台</h1>
+<h3>以下的列表中是系统中内置的全部股票的相关信息。您可以在下面两个输入框内输入股票号（也可粘贴），然后点击对应的按钮查看今日实时价格折线图和历史价格趋势K线图。</h3>
+
+<!--今日价格折线图表单-->
+<form action="#" th:action="@{/todayprice}" th:object="${stock}" method="post">
+    <p>股票号: <input type="text" th:field="*{stockcode}" /></p>
+    <!-- <p>Message: <input type="text" th:field="*{content}" /></p>-->
+    <p><input type="submit" value="看今日实时价折线图" /> <input type="reset" value="复位" /></p>
+</form>
+</body>
+</html>
