@@ -8,7 +8,7 @@ public class User {
         this.username=username;
     }
 
-    public void setBalance(int balance){
+    public void setBalance(float balance){
         this.balance=balance;
     }
 

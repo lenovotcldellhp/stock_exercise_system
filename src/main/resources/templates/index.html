@@ -1,42 +1,105 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>股票练兵平台</title>
+<meta charset="utf-8">
+<title>股票练兵平台</title>
+<!--因为我们所租用的廉价服务器性能很差，这里借用其他网站提供的bootstrap js和css以缓解服务器带宽压力-->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+function login_fail(){
+      alert("登录失败!请确定你输入的用户名和密码是否正确！");
+  }
+
+</script>
 </head>
 <body>
-<h1>欢迎使用股票练兵平台</h1>
-<h3>以下的列表中是系统中内置的全部股票的相关信息。您可以在下面两个输入框内输入股票号（也可粘贴），然后点击对应的按钮查看今日实时价格折线图和历史价格趋势K线图。</h3>
 
-<!--今日价格折线图表单-->
-<form action="#" th:action="@{/todayprice}" th:object="${stock}" method="post">
-    <p>股票号: <input type="text" th:field="*{stockcode}" /></p>
-   <!-- <p>Message: <input type="text" th:field="*{content}" /></p>-->
-    <p><input type="submit" value="看今日实时价折线图" /> <input type="reset" value="复位" /></p>
-</form>
-<!--历史价格K线图表单-->
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">股票练兵平台</a>
+                    </div>
+                    
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                          <li>
+                              <a href="todayprice">今日价格</a>
+                            </li>
+                            <li>
+                                <a href="historyprice">历史价格</a>
+                            </li>
+                            <li>
+                                <a href="buy">买入卖出</a>
+                            </li>
+                        </ul>
+                        
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                               <!--  <a href="#">登录</a>-->
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    
+                </nav>
+                <div class="jumbotron">
+                    <h2>
+                        欢迎使用股票练兵平台</h2>
+                       
+                        <h4>以下是系统中提供的股票信息。您可以在顶部的导航栏中选择所需的功能进行操作。</h4>
+                    
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-2 column">
+                    </div>
+                    <div class="col-md-6 column">
+                
+                            <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                
+                                    <th>股票号码</th>
+                                    <th>股票名称</th>
+                                    <th>已持有量(股)</th>
+                                    </tr>
+                                    </thead>
+                                    <tr data-th-each="stock:${indexlist}">
+                                        <td data-th-text="${stock.stockcode}"></td>
+                                        <td data-th-text="${stock.stockname}"></td>
+                                        <td data-th-text="${stock.holding}"></td>
+                                    </tr>
+                                
+                                </table>
 
-<form action="#" th:action="@{/historyprice}" th:object="${stock}" method="post">
-    <p>股票号: <input type="text" th:field="*{stockcode}" /></p>
-   <!-- <p>Message: <input type="text" th:field="*{content}" /></p>-->
-    <p><input type="submit" value="看历史价趋势K线图" /> <input type="reset" value="复位" /></p>
-</form>
 
-<table border="1">
-    <thead>
-    <tr>
-
-    <th>股票号码</th>
-    <th>股票名称</th>
-    <th>已持有量(股)</th>
-    </tr>
-    </thead>
-    <tr data-th-each="stock:${indexlist}">
-        <td data-th-text="${stock.stockcode}"></td>
-        <td data-th-text="${stock.stockname}"></td>
-        <td data-th-text="${stock.holding}"></td>
-    </tr>
-
-</table>
+                    </div>
+                    <div class="col-md-4 column">
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-4 column">
+                    </div>
+                    <div class="col-md-4 column">
+                    </div>
+                    <div class="col-md-4 column">
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-6 column">
+                    </div>
+                    <div class="col-md-6 column">
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

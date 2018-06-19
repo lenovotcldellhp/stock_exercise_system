@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.BuyResult;
 import com.example.demo.Greeting;
 import com.example.demo.Stockbuy;
+import com.example.demo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +27,11 @@ public class BuyController {
     @GetMapping("/buy")
     public String buyForm(Model model){//交易表单接收
         Stockbuy buy=new Stockbuy();
+        User user=new User();
+        user.setBalance(buyservice.getBalance());
        // float balance=buyservice.getBalance();
         model.addAttribute("buy",buy);
+        model.addAttribute("user",user);
       //  model.addAttribute("balance",balance);
        // model.addAttribute("stockcode",stockcode);//股票号码输入
        // model.addAttribute("count",count);//股票购买量输入

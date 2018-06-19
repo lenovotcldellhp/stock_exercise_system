@@ -26,7 +26,7 @@ public class IndexService {
 
     public List<Stock> getList(){
         System.out.println("******************************");
-        String sql = "SELECT stockcode,stockname,holding FROM stocks";
+        String sql = "SELECT stockcode,stockname,holding,newest_price FROM stocks";
         return (List<Stock>) jdbcTemplate.query(sql, new RowMapper<Stock>(){
 
             @Override//重写方法的注解

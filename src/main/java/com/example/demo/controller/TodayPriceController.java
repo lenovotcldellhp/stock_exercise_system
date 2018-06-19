@@ -55,6 +55,7 @@ public class TodayPriceController {
         //System.out.println(greeting.getContent());
 
         List <StockPrice> stockPriceList=todayPriceService.getList(stock.getStockcode(),"2018-06-15");
+        //6月19日上午：现在正在集合竞价，无法获取实时价格，所以还是得用15日数据
         System.out.println(stockPriceList.size());
      //   System.out.println(stockPriceList.get(2).getPrice());
         model.addAttribute("stockPriceList", stockPriceList);

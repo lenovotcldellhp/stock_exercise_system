@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>股票练兵平台</title>
+</head>
+<body>
+<h1>欢迎使用股票练兵平台</h1>
+<h3>以下的列表中是系统中内置的全部股票的相关信息。您可以在顶部导航栏中选择所需功能进行操作。</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+
+    <th>股票号码</th>
+    <th>股票名称</th>
+    <th>已持有量(股)</th>
+    </tr>
+    </thead>
+    <tr data-th-each="stock:${indexlist}">
+        <td data-th-text="${stock.stockcode}"></td>
+        <td data-th-text="${stock.stockname}"></td>
+        <td data-th-text="${stock.holding}"></td>
+    </tr>
+
+</table>
+</body>
+</html>

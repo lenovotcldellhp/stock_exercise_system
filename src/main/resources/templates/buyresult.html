@@ -1,17 +1,95 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>交易结果</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <title>股票练兵平台</title>
+    <!--因为我们所租用的廉价服务器性能很差，这里借用其他网站提供的bootstrap js和css以缓解服务器带宽压力-->
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function login_fail(){
+            alert("登录失败!请确定你输入的用户名和密码是否正确！");
+        }
+
+    </script>
 </head>
 <body>
-<h1>交易结果</h1>
 
-<p th:text="'交易类型: ' + ${buyResult.type}" />
-<p th:text="'股票号码: ' + ${buyResult.stockcode}" />
-<p th:text="'交易总金额: ' + ${buyResult.money}" />
-<p th:text="'股票数量(股): ' + ${buyResult.count}" />
-<p th:text="'交易时股票单价: ' + ${buyResult.price}" />
-<p th:text="'交易结果: ' + ${buyResult.result}" />
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">股票练兵平台</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="todayprice">今日价格</a>
+                        </li>
+                        <li>
+                            <a href="historyprice">历史价格</a>
+                        </li>
+                        <li>
+                            <a href="buy">买入卖出</a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <!--  <a href="#">登录</a>-->
+                        </li>
+
+                    </ul>
+                </div>
+
+            </nav>
+            <div class="jumbotron">
+                <h2>
+                    交易报告</h2>
+
+                <h4>请在下方查看交易结果。</h4>
+
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                </div>
+                <div class="col-md-6 column">
+
+                    <p th:text="'交易类型: ' + ${buyResult.type}" />
+                    <p th:text="'股票号码: ' + ${buyResult.stockcode}" />
+                    <p th:text="'交易总金额: ' + ${buyResult.money}" />
+                    <p th:text="'股票数量(股): ' + ${buyResult.count}" />
+                    <p th:text="'交易时股票单价: ' + ${buyResult.price}" />
+                    <p th:text="'交易结果: ' + ${buyResult.result}" />
+
+
+                </div>
+                <div class="col-md-4 column">
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                </div>
+                <div class="col-md-4 column">
+                </div>
+                <div class="col-md-4 column">
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-6 column">
+                </div>
+                <div class="col-md-6 column">
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
