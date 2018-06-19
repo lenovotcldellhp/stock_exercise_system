@@ -1,34 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html style="height: 100%" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>股票练兵平台</title>
+    <meta charset="utf-8">
 </head>
-<body>
-<h1>股票历史信息</h1>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    var message=[[${stockHistoryList}]];//从后端得到的股票历史信息表
+
+    option = null;
+    option = {
+        xAxis: {
+            data: []
+            /*'2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27'*/
+        },
+        yAxis: {
+
+        },
+        series: [
+            {
+            type: 'k',
+            data: [
+                //前一天收盘价，当天k开盘价，当天最低价，当天最高价
+              //  [20, 30, 10, 35],[40, 35, 30, 55],[33, 38, 33, 40],[40, 40, 32, 42]
+            ]
+        }
+        ]
+    };
+    ;
+    var temp=[];
+    for(i=message.length-1;i>=0;i--){
+            option.xAxis.data.push(message[i].date);//工作正常
+            temp=[message[i].close,message[i].open,message[i].lowest,message[i].highest];
+           // console.log(temp[0]);
+           // console.log(temp[1]);
+            option.series[0].data.push(temp);
+    }
 
 
-<table border="1">
-    <thead>
-    <tr>
-
-        <th>股票号码</th>
-        <th>日期</th>
-        <th>开盘价</th>
-        <th>收盘价</th>
-        <th>最高价</th>
-        <th>最低价</th>
-    </tr>
-    </thead>
-    <tr data-th-each="stock:${stockHistoryList}">
-        <td data-th-text="${stock.stockcode}"></td>
-        <td data-th-text="${stock.date}"></td>
-        <td data-th-text="${stock.open}"></td>
-        <td data-th-text="${stock.close}"></td>
-        <td data-th-text="${stock.highest}"></td>
-        <td data-th-text="${stock.lowest}"></td>
-    </tr>
-
-</table>
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
 </body>
 </html>

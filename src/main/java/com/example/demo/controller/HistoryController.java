@@ -47,7 +47,7 @@ public class HistoryController {
         //System.out.println(greeting.getContent());
 
         List<History> stockHistoryList=historyService.getHistory(stock.getStockcode());
-        
+
         System.out.println(stockHistoryList.size());
         //   System.out.println(stockHistoryList.get(2).getPrice());
         System.out.println(stock.getStockcode());

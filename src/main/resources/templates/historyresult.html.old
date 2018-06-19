@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>股票练兵平台</title>
+</head>
+<body>
+<h1>股票历史信息</h1>
+
+
+<table border="1">
+    <thead>
+    <tr>
+
+        <th>股票号码</th>
+        <th>日期</th>
+        <th>开盘价</th>
+        <th>收盘价</th>
+        <th>最高价</th>
+        <th>最低价</th>
+    </tr>
+    </thead>
+    <tr data-th-each="stock:${stockHistoryList}">
+        <td data-th-text="${stock.stockcode}"></td>
+        <td data-th-text="${stock.date}"></td>
+        <td data-th-text="${stock.open}"></td>
+        <td data-th-text="${stock.close}"></td>
+        <td data-th-text="${stock.highest}"></td>
+        <td data-th-text="${stock.lowest}"></td>
+    </tr>
+
+</table>
+</body>
+</html>
