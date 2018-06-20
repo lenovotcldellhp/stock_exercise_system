@@ -18,7 +18,7 @@ public class ManageService {
     }
 
     public void addStock(String stockcode,String stockname){//加股票
-        String sql="insert into stocks(stockcode,stockname) values '"+stockcode+"','"+stockname+"';";
+        String sql="insert into stocks(stockcode,stockname) values ('"+stockcode+"','"+stockname+"');";
         int rows = jdbcTemplate.update(sql);
     }
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>股票练兵平台</title>
+    <title>操作结果</title>
     <!--因为我们所租用的廉价服务器性能很差，这里借用其他网站提供的bootstrap js和css以缓解服务器带宽压力-->
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -30,7 +30,7 @@
                             <a href="todayprice">今日价格</a>
                         </li>
                         <li>
-                            <a href="historyprice">历史价格</a>
+                            <a href="history">历史价格</a>
                         </li>
                         <li>
                             <a href="buy">买入卖出</a>
@@ -51,9 +51,9 @@
             </nav>
             <div class="jumbotron">
                 <h2>
-                    交易报告</h2>
+                    操作报告</h2>
 
-                <h4>请在下方查看交易结果。</h4>
+                <h4>请在下方查看操作结果。</h4>
 
             </div>
             <div class="row clearfix">
@@ -63,7 +63,7 @@
 
                     <p th:text="'交易类型: ' + ${buyResult.type}" />
                     <p th:text="'股票号码: ' + ${buyResult.stockcode}" />
-                    <p th:text="'交易总金额: ' + ${buyResult.money}" />
+                    <p th:text="'交易金额: ' + ${buyResult.money}" />
                     <p th:text="'股票数量(股): ' + ${buyResult.count}" />
                     <p th:text="'交易时股票单价: ' + ${buyResult.price}" />
                     <p th:text="'交易结果: ' + ${buyResult.result}" />

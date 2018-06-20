@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4>添加股票</h4>
+<form action="#" th:action="@{/addstock}" th:object="${stock}" method="post">
+    <p>股票号码: <input class="form-control" type="text" th:field="*{stockcode}" /></p>
+    <p>股票名称: <input class="form-control" type="text" th:field="*{stockname}" /></p>
+    <p>管理密码：<input class="form-control" type="text" th:field="*{newest_price}" /></p>
+    <p><input class="btn btn-primary" type="submit" value="添加" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+</form>
+<h4>删除股票</h4>
+<form action="#" th:action="@{/delstock}" th:object="${stock}" method="post">
+    <p>股票号码: <input class="form-control" type="text" th:field="*{stockcode}" /></p>
+   <!-- <p>股票名称: <input class="form-control" type="text" th:field="*{stockname}" /></p>-->
+    <p>管理密码：<input class="form-control" type="text" th:field="*{newest_price}" /></p>
+    <p><input class="btn btn-primary" type="submit" value="删除" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+</form>
+<h4>修改本金</h4>
+<form action="#" th:action="@{/setbalance}" th:object="${user}" method="post">
+    <p>新的本金: <input class="form-control" type="text" th:field="*{balance}" /></p>
+    <!-- <p>股票名称: <input class="form-control" type="text" th:field="*{stockname}" /></p>-->
+    <p>管理密码：<input class="form-control" type="text" th:field="*{username}" /></p>
+    <p><input class="btn btn-primary" type="submit" value="修改" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+</form>
+</body>
+</html>
