@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.Greeting;
-import com.example.demo.Stock;
+import com.example.demo.*;
+import com.example.demo.service.BuyService;
 import com.example.demo.service.IndexService;
 import com.example.demo.service.TodayPriceService;
 import org.springframework.stereotype.Controller;
@@ -39,6 +39,9 @@ public class IndexController {
     @Autowired
     private IndexService indexService;
     private TodayPriceService todayPriceService;
+    private BuyService buyservice;
+
+
     @GetMapping("/index")//首页中输出股票信息表的controller
     public String student(Model model) throws ParseException {
         List indexlist = indexService.getList();
@@ -49,6 +52,14 @@ public class IndexController {
        // Stock stock=new Stock();
         model.addAttribute("indexlist", indexlist);
         model.addAttribute("stock",new Stock());
+
+        Stockbuy buy=new Stockbuy();
+
+        model.addAttribute("buy",buy);//用于买入表单
+      //  User user=new User();
+      //  user.setBalance(buyservice.getBalance());
+     //   model.addAttribute("user",user);//用于显示剩余本金
+
         return "index";
     }
 
@@ -59,7 +70,7 @@ public class IndexController {
         //System.out.println(greeting.getContent());
         System.out.println("使用今日价格处理Controller");
         System.out.println(stock1.getStockcode());
-        List pricelist=todayPriceService.getList(stock1.getStockcode(),"2018-6-15");
+        List pricelist=todayPriceService.getList(stock1.getStockcode(),"2018-06-21");
         //这是从表单里得到的Stockcode字符串
        // TodayPriceController.setStockcode(stock1.getStockcode());
         return "todayprice";
@@ -74,5 +85,8 @@ public class IndexController {
         System.out.println(stock2.getStockcode());
         return "historyprice";
     }
+
+
+
 }
 

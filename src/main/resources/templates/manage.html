@@ -2,9 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>管理后台</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index">股票练兵平台</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <!--  <a href="#">登录</a>-->
+            </li>
+
+        </ul>
+    </div>
+
+</nav>
+        </div></div></div>
+
+
+<div class="row clearfix">
+    <div class="col-md-4 column">
+    </div>
+    <div class="col-md-4 column">
+
+<h1>后台管理模式</h1>
+<h3>您可以在这里添加、删除股票，或者重置用户的本金。管理操作需要凭管理密码来操作。</h3>
+
 <h4>添加股票</h4>
 <form action="#" th:action="@{/addstock}" th:object="${stock}" method="post">
     <p>股票号码: <input class="form-control" type="text" th:field="*{stockcode}" /></p>
@@ -26,5 +64,9 @@
     <p>管理密码：<input class="form-control" type="text" th:field="*{username}" /></p>
     <p><input class="btn btn-primary" type="submit" value="修改" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
 </form>
+    </div>
+    <div class="col-md-4 column">
+    </div>
+</div>
 </body>
 </html>

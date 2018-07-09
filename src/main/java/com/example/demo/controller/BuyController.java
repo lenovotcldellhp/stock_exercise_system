@@ -72,6 +72,7 @@ public class BuyController {
         //首先，我们要判断一下现有的本金够不够买这么多股票
         if(balance<money){//如果现有余额不够买这些股票
             buyResult.setResult("交易失败：您的现有本金已不足以购买这些股票。");
+            buyservice.addRecord(stockcode,price,money,count,"买入交易失败：余额不足");
         }
         if(balance>=money){//如果余额足够，则继续
             //新的股票持有量=原持有量+要买的量
@@ -83,7 +84,7 @@ public class BuyController {
             //接下来存储这两个数据
             buyservice.setHolding(stockcode,new_count);
             buyservice.setBalance(new_balance);
-
+            buyservice.addRecord(stockcode,price,money,count,"买入交易成功");
             //提示文字
             buyResult.setResult("交易成功。");
         }
@@ -125,8 +126,9 @@ public class BuyController {
         //首先，我们要判断一下现有的股票够不够卖
         if(origin_count<count){//
            buyResult.setResult("交易失败：您当前持有的"+stockcode+"号股票不足，无法完成卖出。");
+            buyservice.addRecord(stockcode,price,money,count,"卖出交易失败：股票量不足");
         }
-       if(balance>=money){
+       if(origin_count>=count){
             //新的股票持有量=原持有量-要卖的量
             int new_count=origin_count-count;
 
@@ -139,6 +141,7 @@ public class BuyController {
 
             //提示文字
             buyResult.setResult("交易成功。");
+           buyservice.addRecord(stockcode,price,money,count,"卖出交易成功");
         }
 
     //    int new_count;//交易后的股票数量

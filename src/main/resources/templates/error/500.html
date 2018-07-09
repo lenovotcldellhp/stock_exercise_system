@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP 500</title>
+</head>
+<body>
+<h1 style="color:red">发生错误：HTTP 500</h1>
+<h3 style="color:red">这个错误的发生原因是服务器的处理逻辑发生了错误。</h3>
+<h3>请确定您是否遇到了如下错误：</h3>
+<h4>1.网络故障导致数据库连接失败。这种情况下请您尝试ping一下数据库服务器看看能否连通，然后尝试通过MySQL Workbench或Navicat等软件手动访问数据库。</h4>
+<h4>2.数据库更改了密码，而您却没有在网站系统中更改配置文件。</h4>
+<h4>3.其他未知错误原因，请尝试输出错误信息。</h4>
+
+<h3 style="color:green">致用户：如您一直无法消除错误，请联系您的系统管理员。</h3>
+
+<h3 style="color:blue">致管理员：错误信息输出方法</h3>
+<h4>通过SSH、SCP方式登录到服务器，然后给/resources/templates/error目录中与错误代码同名的HTML文件更名（不建议删除），然后重新触发错误，即可观察到错误信息。</h4>
+</body>
+</html>

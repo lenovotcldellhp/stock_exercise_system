@@ -119,6 +119,14 @@ public class BuyService {//买入股票的Service类，卖出也用这个就行
         int rows = jdbcTemplate.update(insertSql);
     }
 
+    public void addRecord(String stockcode,float price,float money,int count,String type){
+        String pricestr=String.valueOf(price);
+        String moneystr=String.valueOf(money);
+        String countstr=String.valueOf(count);
+       // String sql="insert into stocks(stockcode,stockname) values ('"+stockcode+"','"+stockname+"');";
+        String recsql="insert into record(stockcode,price,money,count,type) values('"+stockcode+"','"+pricestr+"','"+moneystr+"','"+countstr+"','"+type+"');";
+        int rows = jdbcTemplate.update(recsql);
+    }
 
 
 }

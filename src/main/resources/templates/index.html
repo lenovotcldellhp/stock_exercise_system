@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <title>股票练兵平台</title>
@@ -11,7 +11,21 @@
 function login_fail(){
       alert("登录失败!请确定你输入的用户名和密码是否正确！");
   }
+function check(stockcode){
+    var oText1=document.getElementById('todaystockcode');
+    var oText2=document.getElementById('historystockcode');
+    var oText3=document.getElementById('buystockcode');
+    var oText4=document.getElementById('sellstockcode');
+    oText1.value=stockcode;//给文本框赋值并显示
+    oText2.value=stockcode;//给文本框赋值并显示
+    oText3.value=stockcode;//给文本框赋值并显示
+    oText4.value=stockcode;//给文本框赋值并显示
+}
 
+function help(){
+    str="如果您需要买入卖出、查看价格趋势信息，建议您在股票列表中选择一支股票号使用快速填入功能，\n然后在下面的折叠框中选择需要的功能，填入数量（如需买入卖出)并提交。\n如果您需要，也可以在顶部导航栏中选择在新页面中交易。\n另外，顶部导航栏中也有供您查看交易记录和股市资讯的入口。\n如果您的操作出现异常，请首先确定您输入的数据（股票号、交易数量等）是否正确。\n为了避免输入错误，建议您使用自动填股票号功能。"
+    alert(str);
+}
 </script>
 </head>
 <body>
@@ -35,10 +49,23 @@ function login_fail(){
                             <li>
                                 <a href="buy">买入卖出</a>
                             </li>
+
+                            <li>
+                                <a href="record">交易记录</a>
+                            </li>
+                            <li>
+                                <a href="news">资讯与知识</a>
+                            </li>
+
                         </ul>
                         
                         <ul class="nav navbar-nav navbar-right">
+
                             <li>
+                              <!--  <p th:text="'当前剩余本金: ' + ${user.balance}" />-->
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-danger" onclick="help()">帮助与支持</button>
                                <!--  <a href="#">登录</a>-->
                             </li>
                            
@@ -50,8 +77,8 @@ function login_fail(){
                     <h2>
                         欢迎使用股票练兵平台</h2>
                        
-                        <h4>以下是系统中提供的股票信息。您可以在顶部的导航栏中选择所需的功能进行操作。</h4>
-                    
+                        <h4>以下是系统中提供的股票信息。您可以在顶部的导航栏中选择所需的功能在新页面中进行操作，也可以直接在下面的折叠框里进行操作（折叠框点一下展开，再点一下收起）。股票号可手动填入，也可使用列表中的按钮自动填写到每个股票号输入框中。</h4>
+                 <!--   <p th:text="'您的当前剩余本金是: ' + ${user.balance}" ></p>-->
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-2 column">
@@ -65,12 +92,16 @@ function login_fail(){
                                     <th>股票号码</th>
                                     <th>股票名称</th>
                                     <th>已持有量(股)</th>
+                                        <th>快速填股票号</th>
                                     </tr>
                                     </thead>
                                     <tr data-th-each="stock:${indexlist}">
                                         <td data-th-text="${stock.stockcode}"></td>
                                         <td data-th-text="${stock.stockname}"></td>
                                         <td data-th-text="${stock.holding}"></td>
+                                        <td><button type="button" class="btn btn-primary" th:onclick="'javascript:check(\''+${stock.stockcode}+'\')'">填此股票号</button></td>
+                                        <!--th:onclick="'javascript:check('+${stock.stockcode}+')"-->
+                                    <!--<button type="button" class="btn btn-default">默认按钮</button>-->
                                     </tr>
                                 
                                 </table>
@@ -80,20 +111,115 @@ function login_fail(){
                     <div class="col-md-4 column">
                     </div>
                 </div>
-                <div class="row clearfix">
-                    <div class="col-md-4 column">
+
+                <!--折叠框开始-->
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseOne">
+                                    今日实时价格查看
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                <form action="#" th:action="@{/todayprice}" th:object="${stock}" method="post">
+                                    <p>股票号: <input class="form-control" id="todaystockcode" type="text" th:field="*{stockcode}" /></p>
+                                    <!-- <p>Message: <input type="text" th:field="*{content}" /></p>-->
+                                    <p><input class="btn btn-primary" type="submit" value="看今日实时价折线图" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+                                </form>
+
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 column">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTwo">
+                                    历史价格信息查看
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                <form action="#" th:action="@{/history}" th:object="${stock}" method="post">
+                                    <p>股票号: <input class="form-control" id="historystockcode" type="text" th:field="*{stockcode}" /></p>
+                                    <!-- <p>Message: <input type="text" th:field="*{content}" /></p>-->
+                                    <p><input class="btn btn-primary" type="submit" value="看历史价格K线图" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4 column">
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseThree">
+                                    股票买入
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                <form action="#" th:action="@{/buy}" th:object="${buy}" method="post">
+                                    <p>股票号码: <input class="form-control" id="buystockcode" type="text" th:field="*{stockcode}" /></p>
+                                    <p>交易数量（股）: <input class="form-control" type="text" th:field="*{count}" /></p>
+                                    <p><input class="btn btn-primary" type="submit" value="买入" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+                                </form>
+
+
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseFour">
+                                    股票卖出
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                                <form action="#" th:action="@{/sell}" th:object="${buy}" method="post">
+                                    <p>股票号码: <input class="form-control" id="sellstockcode" type="text" th:field="*{stockcode}" /></p>
+                                    <p>交易数量（股）: <input class="form-control" type="text" th:field="*{count}" /></p>
+                                    <p><input class="btn btn-primary" type="submit" value="卖出" /> <input class="btn btn-primary" type="reset" value="复位" /></p>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    </div>
+
                 </div>
-                <div class="row clearfix">
-                    <div class="col-md-6 column">
-                    </div>
-                    <div class="col-md-6 column">
-                    </div>
-                </div>
+
+
+
+
+
+
+
+                <!--折叠框结束-->
+
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                     </div>

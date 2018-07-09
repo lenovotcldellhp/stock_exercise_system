@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP 400</title>
+</head>
+<body>
+<h1 style="color:red">发生错误：HTTP 400</h1>
+<h3 style="color:red">这个错误的发生原因是您的请求无效。</h3>
+<h3>请确定您是否执行了如下错误操作：</h3>
+<h4>1.股票号等字段输入错误。</h4>
+<h4>2.是否在本应填写数字的地方（如价格、买入卖出数量等）填了字母。</h4>
+
+<h3 style="color:green">致用户：如您一直无法消除错误，请联系您的系统管理员。</h3>
+
+<h3 style="color:blue">致管理员：错误信息输出方法</h3>
+<h4>通过SSH、SCP方式登录到服务器，然后给/resources/templates/error目录中与错误代码同名的HTML文件更名（不建议删除），然后重新触发错误，即可观察到错误信息。</h4>
+
+</body>
+</html>

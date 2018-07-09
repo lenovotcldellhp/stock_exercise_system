@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>股市资讯与知识</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function check(stockcode){
+         //   window.location.href=stockcode;  //将本页替换成新页面
+            window.open(stockcode);  //弹出一个新页面
+        }
+
+
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="index">股票练兵平台</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="todayprice">今日价格</a>
+                        </li>
+                        <li>
+                            <a href="history">历史价格</a>
+                        </li>
+                        <li>
+                            <a href="buy">买入卖出</a>
+                        </li>
+
+                        <li>
+                            <a href="record">交易记录</a>
+                        </li>
+                        <li>
+                            <a href="news">资讯与知识</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <!--  <p th:text="'当前剩余本金: ' + ${user.balance}" />-->
+                        </li>
+                        <li>
+
+                            <!--  <a href="#">登录</a>-->
+                        </li>
+
+                    </ul>
+                </div>
+
+            </nav>
+            <div class="jumbotron">
+                <h2>
+                    股市资讯与知识</h2>
+
+                <h4>了解市场动向，学习高手经验。</h4>
+                <!--   <p th:text="'您的当前剩余本金是: ' + ${user.balance}" ></p>-->
+            </div>
+
+
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+
+                    <th>资讯标题</th>
+                    <th>地址</th>
+                    <th>访问</th>
+
+                </tr>
+                </thead>
+                <tr data-th-each="stock:${indexlist}">
+                    <td data-th-text="${stock.title}"></td>
+                    <td data-th-text="${stock.url}"></td>
+                   <td> <button type="button" class="btn btn-success" th:onclick="'javascript:check(\''+${stock.url}+'\')'">查看此新闻</button></td>
+
+
+                  <!--     <td><button type="button" class="btn btn-primary" th:onclick="'javascript:check(\''+${stock.stockcode}+'\')'">填此股票号</button></td>
+
+                                 -->
+                </tr>
+
+            </table>
+        </div></div></div>
+</body>
+</html>
